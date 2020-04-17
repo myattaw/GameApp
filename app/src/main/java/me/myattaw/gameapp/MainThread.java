@@ -1,5 +1,6 @@
 package me.myattaw.gameapp;
 
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
@@ -9,18 +10,18 @@ public class MainThread extends Thread {
     private static final double UPS_PERIOD = 1E+3/MAX_UPS;
 
     private Main main;
-    private SurfaceHolder surfaceHolder;
+    private Resources resources;
 
     private boolean running = false;
     private double averageFPS;
 
-    public MainThread(Main main, SurfaceHolder surfaceHolder) {
+    public MainThread(Main main, SurfaceHolder surfaceHolder, Resources resources) {
         this.main = main;
-        this.surfaceHolder = surfaceHolder;
+        this.resources = resources;
     }
 
-    public double getAverageFPS() {
-        return averageFPS;
+    public Resources getResources() {
+        return resources;
     }
 
     public MainThread startGame() {
@@ -54,22 +55,19 @@ public class MainThread extends Thread {
         Canvas canvas = null;
         startTime = System.currentTimeMillis();
         while(running) {
-
             // Try to update and render game
             try {
-                canvas = surfaceHolder.lockCanvas();
-                synchronized (surfaceHolder) {
-                    //make custom surface class
-//                    main.getCurrentSurface();
+                canvas = main.getSurfaceHolder().lockCanvas();
+                synchronized (main.getSurfaceHolder()) {
                     updateCount++;
-                    main.getCurrentSurface().draw(canvas);
+                    main.getSurfaceView().draw(canvas);
                 }
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             } finally {
                 if(canvas != null) {
                     try {
-                        surfaceHolder.unlockCanvasAndPost(canvas);
+                        main.getSurfaceHolder().unlockCanvasAndPost(canvas);
                         frameCount++;
                     } catch(Exception e) {
                         e.printStackTrace();

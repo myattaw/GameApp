@@ -1,5 +1,6 @@
-package me.myattaw.gameapp.menu;
+package me.myattaw.gameapp.display;
 
+import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public abstract class Button implements Clickable {
@@ -15,6 +16,8 @@ public abstract class Button implements Clickable {
         this.width = width;
         this.rect = new Rect(x, y, x + width, y + height);
     }
+
+    public abstract void draw(Canvas canvas);
 
     public int getX() {
         return x;
