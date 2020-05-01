@@ -9,6 +9,7 @@ public abstract class Button implements Clickable {
     private int height, width;
     private Rect rect;
 
+    // change this to x, y, width, height
     public Button(int x, int y, int height, int width) {
         this.x = x;
         this.y = y;
@@ -38,4 +39,5 @@ public abstract class Button implements Clickable {
     public Rect getRect() {
         return rect;
     }
+
 }

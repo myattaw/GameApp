@@ -8,6 +8,7 @@ import me.myattaw.gameapp.Main;
 import me.myattaw.gameapp.R;
 import me.myattaw.gameapp.display.Button;
 import me.myattaw.gameapp.display.screen.GameScreen;
+import me.myattaw.gameapp.display.screen.OptionScreen;
 
 public class BitmapButton extends Button {
 
@@ -26,17 +27,16 @@ public class BitmapButton extends Button {
     @Override
     public void onClick(float x, float y) {
         if (x > getX() && x < (getX() + getWidth()) && y > getY() && y < (getY() + getHeight())) {
-
             switch (imageID) {
                 case R.drawable.options_button:
                     System.out.println("options screen");
+                    main.setCurrentScreen(new OptionScreen(main));
                     break;
                 case R.drawable.play_button:
                     main.setCurrentScreen(new GameScreen(main));
                     System.out.println("switch screen");
                     break;
             }
-
         }
     }
 

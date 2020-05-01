@@ -16,7 +16,7 @@ public class TextButton extends Button {
         this.text = text;
         this.textColor.setColor(textColor);
         this.textColor.setTextSize(100);
-        this.textColor.setTextAlign(Paint.Align.CENTER);
+        this.textColor.setTextAlign(Paint.Align.RIGHT);
         this.rectColor.setColor(rectColor);
     }
 
