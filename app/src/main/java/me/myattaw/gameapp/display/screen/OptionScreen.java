@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.myattaw.gameapp.Main;
+import me.myattaw.gameapp.R;
 import me.myattaw.gameapp.display.Button;
+import me.myattaw.gameapp.display.type.BitmapButton;
 import me.myattaw.gameapp.display.type.options.SliderButton;
 import me.myattaw.gameapp.display.type.options.ToggleButton;
 import me.myattaw.gameapp.options.BooleanOption;
@@ -19,25 +21,31 @@ public class OptionScreen implements CustomScreen {
     private List<Button> buttonList = new ArrayList<>();
     private Paint paint = new Paint();
 
-    private final int BUTTON_HEIGHT = 100;
+    private final int BUTTON_HEIGHT = 200;
 
     private final int PADDING = 25;
 
     public OptionScreen(Main main) {
         paint.setColor(0xFFFFFFFF);
 
-        int yOffset = 0;
+        int yOffset = PADDING;
 
         for (BooleanOption booleanOption : BooleanOption.values()) {
-            buttonList.add(new ToggleButton(booleanOption, (main.getWidth() / 4) + yOffset, (main.getHeight() / 2), BUTTON_HEIGHT, (main.getWidth() / 2), 0xFFeb4034, 0xFFFFFFFF));
+            buttonList.add(new ToggleButton(booleanOption, PADDING, yOffset, BUTTON_HEIGHT, main.getWidth() - (PADDING * 2), 0xFFeb4034, 0xFFFFFFFF));
             yOffset += PADDING + BUTTON_HEIGHT;
         }
 
         for (NumberOption numberOption : NumberOption.values()) {
-            buttonList.add(new SliderButton(numberOption, (main.getWidth() / 4), (main.getHeight() / 2) + yOffset, BUTTON_HEIGHT, (main.getWidth() / 2), 0xFFeb4034, 0xFFFFFFFF));
+            buttonList.add(new SliderButton(numberOption, PADDING, yOffset, BUTTON_HEIGHT,main.getWidth() - (PADDING * 2), 0xFFeb4034, 0xFFFFFFFF));
             yOffset += PADDING + BUTTON_HEIGHT;
         }
 
+        buttonList.add(new BitmapButton("Main Menu", main, R.drawable.button, PADDING, main.getHeight() - (BUTTON_HEIGHT * 2), BUTTON_HEIGHT, main.getWidth() - (PADDING * 2), 0xFF000000) {
+            @Override
+            public void buttonListener() {
+                getMain().setCurrentScreen(new MenuScreen(getMain()));
+            }
+        });
 
     }
 

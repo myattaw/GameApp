@@ -23,9 +23,9 @@ public class ToggleButton extends Button {
         this.label = options.getLabel();
         this.textColor.setColor(textColor);
         this.textColor.setTextSize(100);
-        this.textColor.setTextAlign(Paint.Align.CENTER);
+        this.textColor.setTextAlign(Paint.Align.RIGHT);
         this.rectColor.setColor(rectColor);
-     }
+    }
 
     @Override
     public void onClick(float x, float y) {
@@ -51,7 +51,7 @@ public class ToggleButton extends Button {
             canvas.drawRect(rect, textColor);
         }
 
-        canvas.drawText(label, PADDING + getHeight() + getRect().right - (getRect().width() / 2), getRect().top + (getRect().height() / 2) - ((textColor.descent() + textColor.ascent()) / 2), textColor);
+        canvas.drawText(label, getRect().right, getRect().top + (getRect().height() / 2) - ((textColor.descent() + textColor.ascent()) / 2), textColor);
     }
 
 }

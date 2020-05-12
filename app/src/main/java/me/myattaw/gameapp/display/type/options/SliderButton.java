@@ -34,7 +34,12 @@ public class SliderButton extends Button {
     @Override
     public void onClick(float x, float y) {
         if (x > getX() && x < (getX() + getWidth()) && y > getY() && y < (getY() + getHeight())) {
+            System.out.println("Test");
 
+//            property.setFloatValue(((mouseX - x) * (property.maximum.toFloat() - property.minimum.toFloat()) / width + property.minimum.toFloat()))
+//            option.setValue();
+
+            option.setValue(Math.max(option.getMinimum(), Math.min(option.getMaximum(), (int) ((x - value.left) * (option.getMaximum() - option.getMinimum()) / value.width() + option.getMinimum()))));
         }
     }
 

@@ -2,7 +2,8 @@ package me.myattaw.gameapp.options;
 
 public enum BooleanOption {
 
-    SHOW_DEBUG("Show Debug", true);
+    SHOW_DEBUG("Show Debug", true),
+    SHOW_FPS("Show Game FPS", false);
 
     private String label;
     private boolean enable;

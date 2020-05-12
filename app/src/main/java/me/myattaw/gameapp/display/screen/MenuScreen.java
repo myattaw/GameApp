@@ -22,8 +22,20 @@ public class MenuScreen implements CustomScreen {
     public MenuScreen(Main main) {
         paint.setColor(0xFFFFFFFF);
         // draws a button 1/2 of the screens width
-        buttonList.add(new BitmapButton(main, R.drawable.play_button, (main.getWidth() / 4), (main.getHeight() / 2), BUTTON_HEIGHT, (main.getWidth() / 2), 0xFF000000));
-        buttonList.add(new BitmapButton(main, R.drawable.options_button, (main.getWidth() / 4), (main.getHeight() / 2)  + PADDING + BUTTON_HEIGHT, BUTTON_HEIGHT, (main.getWidth() / 2), 0xFF000000));
+        buttonList.add(new BitmapButton(main, R.drawable.play_button, (main.getWidth() / 4), (main.getHeight() / 2), BUTTON_HEIGHT, (main.getWidth() / 2), 0xFF000000) {
+            @Override
+            public void buttonListener() {
+                getMain().setCurrentScreen(new GameScreen(getMain()));
+                System.out.println("switch screen");
+            }
+        });
+        buttonList.add(new BitmapButton(main, R.drawable.options_button, (main.getWidth() / 4), (main.getHeight() / 2) + PADDING + BUTTON_HEIGHT, BUTTON_HEIGHT, (main.getWidth() / 2), 0xFF000000) {
+            @Override
+            public void buttonListener() {
+                getMain().setCurrentScreen(new OptionScreen(getMain()));
+                System.out.println("switch screen");
+            }
+        });
     }
 
     @Override
